@@ -1,8 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button,message} from 'antd';
 
 function App() {
+
+  const success = () => {
+    console.log("message test")
+    message.success('This is a success message');
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,8 +26,15 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+        <Button type="primary" onClick={success}>测试按钮</Button>
+      </div>
     </div>
+    
   );
 }
+
+
+
 
 export default App;
