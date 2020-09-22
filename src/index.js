@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css'
+import './style.less'  //引入less文件
 
 ReactDOM.render(
   // <React.StrictMode>
