@@ -7,6 +7,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './login.less'
 import logo from './images/logo.png'
+import { __esModule } from '@testing-library/dom';
 
 const Item = Form.Item
 
@@ -21,6 +22,28 @@ export default class Login extends Component {
         
 
     }
+
+    /*
+    对密码进行自定义验证
+    */
+    validatePwd = (_, value) => 
+        // value ? Promise.resolve() : Promise.reject('密码不能为空！')
+        {
+            if(value)
+            {
+                return Promise.resolve()
+            }
+            else{
+                return Promise.reject('密码不能为空！')
+            }
+        }
+        
+       
+    
+    
+
+    
+
     //antd v4 版本与 v3 对于 form的写法有变化
     formRef = React.createRef();
 
@@ -55,13 +78,21 @@ export default class Login extends Component {
                     >
                         <Item
                             name="username"
-                            rules={[{ required: true, message: 'Please input your Username!' }]}
+                            //声明式验证： 直接使用别人定义好的验证规则进行验证
+                            rules={[{ required: true, message: 'Please input your Username!' },
+                                    {min: 4, message: '用户名至少4位'},
+                                    {max: 16, message: '用户名不能大于16位'},
+                                    {pattern: /^[a-zA-Z0-9_]+$/,message: '用户名必须是英文、数字或下划线组成'}
+                                ]}
                         >
                             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                         </Item>
                         <Form.Item
                             name="password"
-                            rules={[{ required: true, message: 'Please input your Password!' }]}
+                            rules={[
+                                    { required: true, message: 'Please input your Password!' },
+                                    { validator: this.validatePwd},
+                                ]}
                         >
                             <Input
                             prefix={<LockOutlined className="site-form-item-icon" />}
