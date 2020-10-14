@@ -7,7 +7,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './login.less'
 import logo from './images/logo.png'
-import { __esModule } from '@testing-library/dom';
+
 
 const Item = Form.Item
 
@@ -24,17 +24,32 @@ export default class Login extends Component {
     }
 
     /*
+    源代码地址 https://github.com/Tolerating/react-back 后台API使用koa2开发
+    */
+
+    /*
     对密码进行自定义验证
     */
+   /*
+    antd v4.x的写法
+   */
     validatePwd = (_, value) => 
         // value ? Promise.resolve() : Promise.reject('密码不能为空！')
         {
-            if(value)
+            console.log(_)
+            if(!value)
             {
-                return Promise.resolve()
+                return Promise.reject('密码不能为空！')
+            }else if(value.length<4){
+                return Promise.reject('密码长度不能小于4位')
+            }else if(value.length>12){
+                return Promise.reject('密码长度不能大于12位')
+            }
+            else if(/^[a-zA-Z0-9]+$/.test(value)){
+                return Promise.reject('密码必须是英文、数字或下划线组成')
             }
             else{
-                return Promise.reject('密码不能为空！')
+                return Promise.resolve() //验证通过
             }
         }
         
