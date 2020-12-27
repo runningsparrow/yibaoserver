@@ -17,11 +17,21 @@ const Item = Form.Item
 
 export default class Login extends Component {
 
-    handleSubmit = (values) => {
+    //4.x版本
+    loginsuccess = (values) => {
+
+        
         console.log('Received values of form: ', values);
+        console.log('登录成功！')
         
 
     }
+
+    loginfail = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+        console.log('登录失败');
+      };
+    
 
     /*
     源代码地址 https://github.com/Tolerating/react-back 后台API使用koa2开发
@@ -88,7 +98,8 @@ export default class Login extends Component {
 
                     <Form ref={this.formRef}
                     name="normal_login"
-                    onFinish ={this.handleSubmit}
+                    onFinish ={this.loginsuccess}
+                    onFinishFailed={this.loginfail}
                     className="login-form"
                     >
                         <Item
