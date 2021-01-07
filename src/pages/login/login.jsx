@@ -9,6 +9,9 @@ import './login.less'
 import logo from './images/logo.png'
 
 
+//引入请求登录函数 20200107
+import {reqLogin} from '../../api/index'
+
 const Item = Form.Item
 
 /*
@@ -18,18 +21,32 @@ const Item = Form.Item
 export default class Login extends Component {
 
     //4.x版本
+    //values 可以直接引用所有表单数据
     loginsuccess = (values) => {
 
         
         console.log('Received values of form: ', values);
-        console.log('登录成功！')
+
+        //从 values 中获取用户名和密码
+        const {username,password} = values
+
+        reqLogin(username,password).then(response => {
+            console.log('登录成功！',response.data)
+        }).catch(error =>{
+            console.log("登录失败",error)
+        })
+
+        // console.log('登录成功！')
+
+
+        
         
 
     }
 
     loginfail = (errorInfo) => {
         console.log('Failed:', errorInfo);
-        console.log('登录失败');
+        console.log('校验失败');
       };
     
 

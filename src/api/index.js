@@ -6,3 +6,23 @@
 基本要求: 能根据接口文档定义接口请求函数
  */
 
+ //20200107
+ //引入 ajax
+import ajax from './ajax'
+
+
+// const BASE = 'http://localhost:5000'
+const BASE = ''
+
+//登录
+/*
+export function reqLogin(username, password) {
+  return ajax('/login', {username, password}, 'POST')
+}*/
+
+//改成箭头函数
+export const reqLogin = (username, password) => ajax(BASE + '/login', {username, password}, 'POST')
+
+
+//添加用户
+export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST')

@@ -10,6 +10,8 @@
  */
 
  import axios from 'axios'
+//20210107引入message
+ import {message} from 'antd'
 
  export default function ajax(url, data={}, type='GET') {
     
