@@ -12,6 +12,7 @@ import ajax from './ajax'
 
 
 // const BASE = 'http://localhost:5000'
+// 在 package.json 配置代理服务器
 const BASE = ''
 
 //登录

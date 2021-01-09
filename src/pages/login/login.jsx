@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import { 
     Form, 
     Input, 
+    //20210107引入message
+    message,
     Button} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -11,6 +14,14 @@ import logo from './images/logo.png'
 
 //引入请求登录函数 20200107
 import {reqLogin} from '../../api/index'
+
+//
+import storageUtils from '../../utils/storageUtils'
+import memoryUtils from '../../utils/memoryUtils'
+
+
+
+
 
 const Item = Form.Item
 
@@ -22,7 +33,57 @@ export default class Login extends Component {
 
     //4.x版本
     //values 可以直接引用所有表单数据
-    loginsuccess = (values) => {
+
+    //不是 async await的写法 
+
+    // checksuccess = ( values) => {
+
+        
+    //     console.log('Received values of form: ', values);
+
+    //     //从 values 中获取用户名和密码
+    //     const {username,password} = values
+
+    //     reqLogin(username,password).then(response => {
+    //         // console.log('登录成功！',response.data)
+    //         //{status: 0, data: user}  {status: 1, msg: 'xxx'}
+    //         // console.log("====")
+    //         // console.log(response)
+    //         if (response.status === 0) 
+    //         {
+    //             console.log('登录成功！',response)
+    //         }
+    //         else{
+    //             console.log(response)
+
+    //         }
+    //     }).catch(error =>{
+    //         console.log("登录失败",error)
+    //     })
+
+    //是async await 的写法 
+    // checksuccess = async ( values) => {
+
+        
+    //     console.log('Received values of form: ', values);
+
+    //     //从 values 中获取用户名和密码
+    //     const {username,password} = values
+
+
+    //     try {
+    //         const result = await reqLogin(username,password)
+    //         console.log('请求成功',result)
+    //     }catch(error){
+    //         console.log("请求出错了",error)
+    //     } 
+        
+
+    // }
+
+    //async await 写法再优化
+
+    checksuccess = async ( values) => {
 
         
         console.log('Received values of form: ', values);
@@ -30,21 +91,38 @@ export default class Login extends Component {
         //从 values 中获取用户名和密码
         const {username,password} = values
 
-        reqLogin(username,password).then(response => {
-            console.log('登录成功！',response.data)
-        }).catch(error =>{
-            console.log("登录失败",error)
-        })
 
-        // console.log('登录成功！')
+       
+        const result = await reqLogin(username,password)
+        //{status: 0, data: user}  {status: 1, msg: 'xxx'}
+        if(result.status===0)//登录成功
+        {
+            //提示登录成功
+            message.success('登录成功')
 
-
+            //保存user
+            const user = result.data
+            memoryUtils.user = user //保存在内存中
+            storageUtils.saveUser(user) // 保存到local中
+            
+            
+            //跳转页面(使用push，可以回退)
+            // this.props.history.push("/")
+            //跳转页面(使用replace,防止回退)
+            this.props.history.replace("/")
+            
+        }
+        else{ //登录失败
+            //提示错误信息message
+            message.error(result.msg)
+        }
+        
         
         
 
     }
 
-    loginfail = (errorInfo) => {
+    checkfail = (errorInfo) => {
         console.log('Failed:', errorInfo);
         console.log('校验失败');
       };
@@ -72,9 +150,9 @@ export default class Login extends Component {
             }else if(value.length>12){
                 return Promise.reject('密码长度不能大于12位')
             }
-            else if(/^[a-zA-Z0-9]+$/.test(value)){
-                return Promise.reject('密码必须是英文、数字或下划线组成')
-            }
+            // else if(/^[a-zA-Z0-9]+$/.test(value)){
+            //     return Promise.reject('密码必须是英文、数字或下划线组成')
+            // }
             else{
                 return Promise.resolve() //验证通过
             }
@@ -102,7 +180,11 @@ export default class Login extends Component {
 
     render(){
 
-       
+        // 如果用户已经登陆, 自动跳转到管理界面
+        const user = memoryUtils.user
+        if(user && user._id) {
+            return <Redirect to='/'/>
+        }
 
         return(
             <div className="login">
@@ -115,8 +197,8 @@ export default class Login extends Component {
 
                     <Form ref={this.formRef}
                     name="normal_login"
-                    onFinish ={this.loginsuccess}
-                    onFinishFailed={this.loginfail}
+                    onFinish ={this.checksuccess}
+                    onFinishFailed={this.checkfail}
                     className="login-form"
                     >
                         <Item

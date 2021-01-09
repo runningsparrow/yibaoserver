@@ -6,6 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import 'antd/dist/antd.css'
 import './style.less'  //引入less文件
 
+import storageUtils from './utils/storageUtils'
+import memoryUtils from './utils/memoryUtils'
+
+// 读取local中保存user, 保存到内存中
+const user = storageUtils.getUser()
+memoryUtils.user = user
+
 ReactDOM.render(
   // <React.StrictMode>
   //   <App />
