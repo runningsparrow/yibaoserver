@@ -18,5 +18,17 @@
  建立 util 目录存放工具函数
 
  p27 维持登录 
- 使用store 存储对象
- 
+ 使用store 存储对象及各组件调用
+
+ p28 使用 antd layout布局 
+ 1,在src下建立 components目录
+ 在components 目录下建立 header left-nav目录 
+ 建立 left-nav/index.jsx index.less header/index.jsx index.less
+ 为 admin.jsx left-nav header 增加一点样式
+
+ p29
+ 1
+ 在 left-nav 把 div 改成 link，使其可以点击 
+ 引入 import {Link} from 'react-router-dom'
+ 2
+ 左侧menu

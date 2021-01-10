@@ -9,7 +9,7 @@ import {
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './login.less'
-import logo from './images/logo.png'
+import logo from '../../assets/images/logo.png'
 
 
 //引入请求登录函数 20200107
@@ -168,9 +168,9 @@ export default class Login extends Component {
     formRef = React.createRef();
 
     componentDidMount() {
-        this.formRef.current.setFieldsValue({
-          username: 'xtgl1',
-        });
+        // this.formRef.current.setFieldsValue({
+        //   username: 'xtgl1',
+        // });
 
         
 
