@@ -32,3 +32,16 @@
  引入 import {Link} from 'react-router-dom'
  2
  左侧menu
+
+ 20210123
+ p30 二级子路由
+ 子路由都放置在在admin.jsx里
+ 然后在admin.jsx 引入 Route Switch
+ Route 有两个属性 path 和 component
+ 
+ p31 左侧菜单跳转路由
+ 在menu.item里包裹 <link></link>
+
+ p32 菜单数据 
+ 抽离出来，单独写一个 src/config/menuconfig.js
+ 在 left-nav 引入 menuconfig
