@@ -69,11 +69,12 @@ export default class LeftNav extends Component {
                 </SubMenu>
             */
             if(!item.children) {
-                console.log(item.icon)
                 return (
                 <Menu.Item key={item.key}>
                     <Link to={item.key}>
-                <Icon type={<WhatsAppOutlined />}/>
+                {/* <Icon type={<WhatsAppOutlined />}/> */}
+                    {/* <WhatsAppOutlined /> */}
+                    {item.icon}
                     <span>{item.title}</span>
                     </Link>
                 </Menu.Item>
@@ -84,7 +85,8 @@ export default class LeftNav extends Component {
                     key={item.key}
                     title={
                     <span>
-                    <Icon type={item.icon}/>
+                    {/* <Icon type={item.icon}/> */}
+                    {item.icon}
                     <span>{item.title}</span>
                     </span>
                     }
