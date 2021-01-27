@@ -45,3 +45,33 @@
  p32 菜单数据 
  抽离出来，单独写一个 src/config/menuconfig.js
  在 left-nav 引入 menuconfig
+
+ 20210127
+ p32 菜单列表 map() 加递归
+ map() 方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+ map() 方法按照原始数组元素顺序依次处理元素。
+ 注意： map() 不会对空数组进行检测。
+ 注意： map() 不会改变原始数组。
+
+
+ p33 菜单列表 reduce() 加递归
+ reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
+ reduce() 可以作为一个高阶函数，用于函数的 compose。
+ 注意: reduce() 对于空数组是不会执行回调函数的。
+ ====================
+ 实例
+  计算数组元素相加后的总和：
+
+  var numbers = [65, 44, 12, 4];
+  
+  function getSum(total, num) {
+      return total + num;
+  }
+  function myFunction(item) {
+      document.getElementById("demo").innerHTML = numbers.reduce(getSum);
+  }
+  输出结果：
+
+  125
+ ====================
+ p34
