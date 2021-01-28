@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 import { Menu, Button, Icon } from 'antd';
 import {
@@ -28,8 +28,9 @@ const { SubMenu } = Menu;
 /*
 左侧导航的组件
  */
-
-export default class LeftNav extends Component {
+// 将上面一句改成下面一句，以便生效 export default withRouter(LeftNav)
+// export default class LeftNav extends Component {
+class LeftNav extends Component {
     state = {
         collapsed: false,
       };
@@ -107,6 +108,9 @@ export default class LeftNav extends Component {
     使用reduce() + 递归调用
     */
     getMenuNodes = (menuList) => {
+        // 得到当前请求的路由路径
+        const path = this.props.location.pathname
+
         return menuList.reduce((pre,item) => {
             //向pre添加<Menu.Item>
             if(!item.children){
@@ -124,6 +128,16 @@ export default class LeftNav extends Component {
                 )
             }
             else{
+
+            // 查找一个与当前请求路径匹配的子Item
+            const cItem = item.children.find(cItem => path.indexOf(cItem.key)===0)
+            // 如果存在, 说明当前item的子列表需要打开
+            if (cItem) {
+                this.openKey = item.key
+            }
+
+
+
             //向pre 添加<SubMenu>
             pre.push(
                 (
@@ -148,7 +162,24 @@ export default class LeftNav extends Component {
         },[])  //第一次返回空数组
     }
 
+
+    /*
+    在第一次render()之前执行一次
+    为第一个render()准备数据(必须同步的)
+    */
+    componentWillMount () {
+        this.menuNodes = this.getMenuNodes(menuList)
+    }
+
     render(){
+
+        // 得到当前请求的路由路径
+        const path = this.props.location.pathname
+
+
+        // 得到需要打开菜单项的key
+        const openKey = this.openKey
+
         return(
             <div className="left-nav">
                 
@@ -160,11 +191,11 @@ export default class LeftNav extends Component {
                 
                 {/* //左侧菜单 */}
                 <Menu
-                defaultSelectedKeys={['1']}
-                defaultOpenKeys={['sub1']}
+                defaultSelectedKeys={[path]}
+                defaultOpenKeys={[openKey]}
                 mode="inline"
                 theme="dark"
-                inlineCollapsed={this.state.collapsed}
+                // inlineCollapsed={this.state.collapsed}
                 >
                 
                 {/* <Menu.Item key="/home" icon={<PieChartOutlined />}>
@@ -231,7 +262,11 @@ export default class LeftNav extends Component {
                 
                 {
                     //渲染菜单
-                    this.getMenuNodes(menuList)
+                    //取数移到 componentWillMount()中去执行
+                    // this.getMenuNodes(menuList)
+                    //然后取在componentWillMount 赋值的 this.menuNodes
+                    this.menuNodes
+
                 }
                 </Menu>
                 
@@ -239,3 +274,11 @@ export default class LeftNav extends Component {
         )
     }
 }
+
+
+/*
+withRouter高阶组件:
+包装非路由组件, 返回一个新的组件
+新的组件向非路由组件传递3个属性: history/location/match
+ */
+export default withRouter(LeftNav)
