@@ -90,6 +90,10 @@ P38 jsonp 插件的使用
 在 api/index.jsx 定义 jsonp的接口请求函数
 
 p39 jsonp 跨域请求问题
+需要申请百度API Key申请地址：http://lbsyun.baidu.com/apiconsole/key
+创建百度应用，提交bai后得到API Key
 
-
+p40 动态显示当前时间和天气
+https://github.com/thyhates/react-pinyin
+汉字转拼音
 
