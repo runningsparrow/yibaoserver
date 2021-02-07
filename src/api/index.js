@@ -13,6 +13,8 @@ import ajax from './ajax'
 //20210131
 //引入jsonp
 import jsonp from 'jsonp'
+
+import axios from 'axios'
 //引入message
 import {message} from 'antd'
 
@@ -46,19 +48,47 @@ export const reqWeather = (city) => {
     // const url = `http://api.map.baidu.com/telematics/v3/weather?location=${city}&output=json&ak=GyR9yTlfXytiUGRbeAE4MDGiWWy2pdP7`
     const url = `http://api.map.baidu.com/weather/v1/?district_id=310100&data_type=all&ak=GyR9yTlfXytiUGRbeAE4MDGiWWy2pdP7`
     // 发送jsonp请求
-    jsonp(url, {}, (err, data) => {
-      console.log('jsonp()', err, data)
-      // 如果成功了
-      if (!err && data.status==='success') {
-        // 取出需要的数据
-        const {dayPictureUrl, weather} = data.results[0].weather_data[0]
-        resolve({dayPictureUrl, weather})
-      } else {
-        // 如果失败了
-        message.error('获取天气信息失败!')
+    jsonp(url, {}, 
+      // (err, data) => {
+      //   console.log('jsonp()', err, data)
+      //   // 如果成功了
+      //   if (!err && data.status==='success') {
+      //     // 取出需要的数据
+      //     const {dayPictureUrl, weather} = data.results[0].weather_data[0]
+      //     resolve({dayPictureUrl, weather})
+      //   } else {
+      //     // 如果失败了
+      //     message.error('获取天气信息失败!')
+      //   }
+      // }
+      function(err, data){
+          console.log('jsonp()', err, data)
+        // 如果成功了
+        if (!err && data.status==='success') {
+          // 取出需要的数据
+          const {dayPictureUrl, weather} = data.results[0].weather_data[0]
+          resolve({dayPictureUrl, weather})
+        } else {
+          // 如果失败了
+          message.error('获取天气信息失败!')
+        }
       }
+    )
+    // let promise
+    // promise = axios.get(url
+    // )
+    // // 2. 如果成功了, 调用resolve(value)
+    // promise.then(response => {
+    //       // 取出需要的数据
+    //       console.log(response)
+    //       const {dayPictureUrl, weather} = response.results[0].weather_data[0]
+    //       resolve({dayPictureUrl, weather})
+    // // 3. 如果失败了, 不调用reject(reason), 而是提示异常信息
+    // }).catch(error => {
+    //     // reject(error)
+    //     message.error('获取天气信息失败!' + error.message)
+    // })
 
-    })
   })
 }
 // reqWeather('北京')

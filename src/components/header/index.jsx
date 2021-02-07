@@ -72,17 +72,17 @@ export default class Header extends Component {
                 <div className="header-top">
                 <span>欢迎, {username}</span>
                     {/* <span>欢迎, admin</span> */}
-                    <a href="javascript:">退出</a>
+                    <a href="#!">退出</a>
                 </div>
                 <div className="header-bottom">
                     <div className="header-bottom-left">首页</div>
                     <div className="header-bottom-right">
                     <span>{currentTime}</span>
-                    <img src={dayPictureUrl} alt="weather"/>
-                    <span>{weather}</span>
-                        {/* <span>2021-01-28 22:22:22</span>
+                    {/* <img src={dayPictureUrl} alt="weather"/>
+                    <span>{weather}</span> */}
+                        {/* <span>2021-01-28 22:22:22</span> */}
                         <img src="http://api.map.baidu.com/images/weather/day/qing.png" alt="weather"></img>
-                        <span>晴</span> */}
+                        <span>晴</span>
                     </div>
                 </div>
             </div>
