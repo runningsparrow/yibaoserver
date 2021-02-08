@@ -128,7 +128,8 @@ class Header extends Component {
                 <div className="header-top">
                 <span>欢迎, {username}</span>
                     {/* <span>欢迎, admin</span> */}
-                    <a href="#!" onClick = {this.logout}>退出</a>
+                    {/* <a href="#!" onClick = {this.logout}>退出</a> */}
+                    <LinkButton onClick={this.logout}>退出</LinkButton>
                 </div>
                 <div className="header-bottom">
                     {/* <div className="header-bottom-left">首页</div> */}
