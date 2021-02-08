@@ -97,3 +97,29 @@ p40 动态显示当前时间和天气
 https://github.com/thyhates/react-pinyin
 汉字转拼音
 定义一个 /src/utils/dateUtils.js 模块
+百度天气jsop访问 corb问题,暂时跳过
+
+
+20200208
+P4141_尚硅谷_动态显示当前标题
+
+==================================
+箭头函数相当于匿名函数，并且简化了函数定义。箭头函数有两种格式，一种只包含一个表达式，省略掉了{ … }和return。还有一种可以包含多条语句，这时候就不能省略{ … }和return
+
+1
+() => return 'hello'
+(a,b) => a + b
+
+2
+(a) => {
+  a = a+ 1
+  return a
+}
+==================================
+
+P4242_尚硅谷_退出登陆功能
+须引入antd 的 模态框
+import { Modal} from 'antd'
+
+P4343_尚硅谷_LinkButton组件
+添加 /src/components/link-button 组件
