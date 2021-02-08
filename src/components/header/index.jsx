@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom'
 
 //退出时跳出对话框
 import { Modal} from 'antd'
-// import LinkButton from '../link-button'
+import LinkButton from '../link-button'
 //动态显示路径
 import menuList from '../../config/menuConfig'
 //引入天气请求
