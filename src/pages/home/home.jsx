@@ -1,9 +1,13 @@
 import React, {Component} from 'react'
 
+import './home.less'
+
 export default class Home extends Component {
     render() {
         return(
-            <div>home</div>
+            <div className="home">
+                欢迎使用资源存储管理
+            </div>
         )
 
         
