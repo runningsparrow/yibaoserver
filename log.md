@@ -132,9 +132,19 @@ p45 Home 组件
 
 
 P46 Category组件_静态界面
-使用 card
+使用 Card
 
 https://antdv.com/components/card/
+
+使用 Table
+使用边框 bordered
+指定 rowKey
+指定列宽
+
+P4747_尚硅谷_Category组件_接口请求函数
+
+
+
 
 
 
