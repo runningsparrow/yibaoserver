@@ -5,6 +5,65 @@ import LinkButton from '../../components/link-button'
 
 
 export default class Zenv extends Component {
+
+    //20200416
+    state = {
+      loading: false, // 是否正在获取数据中
+      plexes:[], //环境列表
+    }
+
+    /*
+    初始化Table列的数组
+    */
+    initColumns = () => {
+      this.columns = [
+        {
+          title: 'Plex环境',
+          dataIndex: 'plexname',
+          key: 'plexname',
+        },
+        {
+          title: '应用',
+          dataIndex: 'use',
+          key: 'use',
+        },
+        {
+          title: '总容量',
+          dataIndex: 'total',
+          key: 'total',
+        },
+        {
+          title: '已使用',
+          dataIndex: 'used',
+          key: 'used',
+        },
+        {
+          title: '剩余容量',
+          dataIndex: 'free',
+          key: 'free',
+        },
+        {
+          title: '操作',
+          width: 500,
+          dataIndex: '',
+          key: 'x',
+          render: () => (
+            <span>
+              <LinkButton>修改Plex</LinkButton>
+              <LinkButton>查看Lpar</LinkButton>
+            </span>
+          ),
+        },
+      ]
+    }
+
+    /*
+     异步获取zenv数组 
+     */
+    getPlexes = async () => {
+      
+    }
+
     render() {
 
 
