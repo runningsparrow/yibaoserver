@@ -33,8 +33,11 @@ export const reqLogin = (username, password) => ajax(BASE + '/login', {username,
 
 
 //添加用户
-export const reqAddUser = (user) => ajax('/manage/user/add', user, 'POST')
+export const reqAddUser = (user) => ajax(BASE + '/manage/user/add', user, 'POST')
 
+
+//获取 环境 plex 列表
+export const reqPlexes = () => ajax(BASE + '/manage/plex/list', 'GET')
 
 
 /*
