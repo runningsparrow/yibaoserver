@@ -16,6 +16,7 @@ import Channel from '../resource/channel'
 import Controlunit from '../resource/controlunit'
 import Diskcab from '../resource/diskcab'  
 import Zenv from '../resource/zenv'  
+import Lpar from '../resource/lpar'
 import Diskaddr from '../storage/diskaddr'
 import Disktype from '../storage/disktype'
 import Disklog from '../resourcelog/disklog'
@@ -57,6 +58,7 @@ export default class Admin extends Component {
                                 <Route path='/resource/diskcab' component={Diskcab}></Route>
                                 <Route path='/resource/controlunit' component={Controlunit}></Route>
                                 <Route path='/resource/channel' component={Channel}></Route>
+                                <Route path='/resource/lpar' component={Lpar}></Route>
                                 <Route path='/storage/diskaddr' component={Diskaddr}></Route>
                                 <Route path='/storage/disktype' component={Disktype}></Route>
                                 <Route path='/resourcelog/disklog' component={Disklog}></Route>

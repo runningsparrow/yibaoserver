@@ -148,4 +148,6 @@ P4747_尚硅谷_Category组件_接口请求函数
 20210419
 P4848_尚硅谷_Category组件_异步显示
 
+在 api/index.js 增加请求ajax 获取 plex 的函数
+在 zenv 修改数据来源为 ajax 请求
 

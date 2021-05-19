@@ -45,6 +45,11 @@ const menuList = [
         key: '/resource/channel',
         icon: <ContainerOutlined />
       },
+      {
+        title: '逻辑分区',
+        key: '/resource/lpar',
+        icon: <ContainerOutlined />
+      },
     ]
   },
 
