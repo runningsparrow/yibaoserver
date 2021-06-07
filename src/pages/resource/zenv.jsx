@@ -53,7 +53,8 @@ export default class Zenv extends Component {
           render: () => (
             <span>
               <LinkButton>修改Plex</LinkButton>
-              <LinkButton>查看Lpar</LinkButton>
+              {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
+              <LinkButton onClick={() => {this.showLpars(plexname)}}>查看Lpar</LinkButton>
             </span>
           ),
         },
@@ -86,6 +87,13 @@ export default class Zenv extends Component {
         }
     }
 
+    /* 为了使本函数不在渲染时调用，而是在点击时调用，
+    必须在 onlick 调用此函数时外面包一个函数，这样就可以在
+    回调函数里传参数了 */
+    /*显示plex对应的lpar*/
+    showLpars = (plexname) => {
+
+    }
 
      /*
     为第一次render()准备数据
