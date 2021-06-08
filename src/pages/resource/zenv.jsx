@@ -13,6 +13,7 @@ export default class Zenv extends Component {
     state = {
       loading: false, // 是否正在获取数据中
       plexes:[], //环境列表
+      chosedplex:''
     }
 
     /*
@@ -50,7 +51,7 @@ export default class Zenv extends Component {
           width: 500,
           dataIndex: '',
           key: 'x',
-          render: () => (
+          render: (plexname) => (
             <span>
               <LinkButton>修改Plex</LinkButton>
               {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
@@ -92,6 +93,8 @@ export default class Zenv extends Component {
     回调函数里传参数了 */
     /*显示plex对应的lpar*/
     showLpars = (plexname) => {
+
+      console.log(plexname)
 
     }
 
