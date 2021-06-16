@@ -125,7 +125,7 @@ export default class Zenv extends Component {
         const extra = (
             <Button type='primary'>
                 <Icon type='plus'></Icon>
-                添加
+                添加plex
             </Button>
         )
 

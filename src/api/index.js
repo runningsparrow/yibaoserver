@@ -40,6 +40,11 @@ export const reqAddUser = (user) => ajax(BASE + '/manage/user/add', user, 'POST'
 export const reqPlexes = () => ajax(BASE + '/manage/plex/list', 'GET')
 
 
+
+//获取 环境 lpar 列表
+export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
+
+
 /*
 jsonp
 json请求的接口请求函数
