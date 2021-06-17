@@ -126,15 +126,21 @@ export default class Channel extends Component {
             key: 'x',
             render: (lpar) => (
               <span>
-                <LinkButton>修改Lpar</LinkButton>
                 {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
-                <LinkButton onClick={() => {this.showLpars(lpar)}}>查看Lpar</LinkButton>
+                <LinkButton onClick={() => {this.reviselpar(lpar)}}>修改Lpar</LinkButton>
               </span>
             ),
           },
         ]
       }
 
+
+    /*显示plex对应的lpar*/
+    reviselpar = (lpar) => {
+
+      console.log(lpar)
+
+    }  
 
     /*
      异步获取zenv数组 
@@ -207,6 +213,8 @@ export default class Channel extends Component {
               //  columns={columns} 
               columns={this.columns} 
               pagination={{defaultPageSize: 5, showQuickJumper: true}}
+              // 加上这条 横向滚动 支持此属性的浏览器内容就不会换行了
+              scroll={{ x: 'max-content' }}
               />
             </Card>
             </div>
