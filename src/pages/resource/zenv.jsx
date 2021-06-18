@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import { Card,Button,Icon,Table } from 'antd';
+import { 
+  Card,
+  Button,
+  Icon,
+  Table,
+  Modal
+} from 'antd';
 
 import LinkButton from '../../components/link-button';
 
@@ -13,7 +19,8 @@ export default class Zenv extends Component {
     state = {
       loading: false, // 是否正在获取数据中
       plexes:[], //环境列表
-      chosedplex:''
+      chosedplex:'',
+      showStatus: 0, //标识添加/更新的确认框是否显示, 0:都不显示, 1: 显示添加, 2: 显示更新
     }
 
     /*
@@ -116,7 +123,7 @@ export default class Zenv extends Component {
     render() {
 
         // 读取状态数据
-        const {plexes, loading} = this.state
+        const {plexes, loading, showStatus} = this.state
 
         //card 的左侧
         const title = 'Plex'
@@ -296,6 +303,23 @@ export default class Zenv extends Component {
                   columns={this.columns} 
                   pagination={{defaultPageSize: 5, showQuickJumper: true}}
                    />
+                   <Modal title="添加 plex" 
+                    visible={showStatus===1} 
+                    onOk={handleOk} 
+                    onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
+
+                  <Modal title="修改 plex" 
+                    visible={showStatus===2} 
+                    onOk={handleOk} 
+                    onCancel={handleCancel}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                 </Card>
             </div>
         )
