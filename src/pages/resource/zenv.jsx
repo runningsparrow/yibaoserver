@@ -60,7 +60,7 @@ export default class Zenv extends Component {
           key: 'x',
           render: (plex) => (
             <span>
-              <LinkButton>修改Plex</LinkButton>
+              <LinkButton onClick={this.showUpdate}>修改Plex</LinkButton>
               {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
               <LinkButton onClick={() => {this.showLpars(plex)}}>查看Lpar</LinkButton>
             </span>
@@ -105,6 +105,51 @@ export default class Zenv extends Component {
 
     }
 
+
+    /*
+    响应点击取消: 隐藏确定框
+    */
+    handleCancel = () => {
+      this.setState({
+        showStatus : 0
+      })
+    }
+
+
+    /*
+    显示添加的确认框
+    */
+   showAdd = () => {
+     this.setState({
+       showStatus: 1
+     })
+   }
+
+   /*
+   显示修改的确认框
+   */
+   showUpdate = () => {
+    this.setState({
+      showStatus: 2
+    })
+  }
+
+
+    /*
+    添加plex
+    */
+    addPlex = () => {
+      console.log('addPlex')
+    }
+
+    /*
+    更新plex
+    */
+    updatePlex = () => {
+      console.log('updatePlex')
+    }
+
+
      /*
     为第一次render()准备数据
     */
@@ -130,7 +175,7 @@ export default class Zenv extends Component {
 
         //card 的右侧
         const extra = (
-            <Button type='primary'>
+            <Button type='primary' onClick={this.showAdd}>
                 <Icon type='plus'></Icon>
                 添加plex
             </Button>
@@ -305,20 +350,16 @@ export default class Zenv extends Component {
                    />
                    <Modal title="添加 plex" 
                     visible={showStatus===1} 
-                    onOk={handleOk} 
-                    onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    onOk={this.addPlex} 
+                    onCancel={this.handleCancel}>
+                    <p>添加界面</p>
                   </Modal>
 
                   <Modal title="修改 plex" 
                     visible={showStatus===2} 
-                    onOk={handleOk} 
-                    onCancel={handleCancel}>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
+                    onOk={this.updatePlex} 
+                    onCancel={this.handleCancel}>
+                    <p>修改界面</p>
                   </Modal>
                 </Card>
             </div>
