@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+//20210707
+import PropTypes from 'prop-types'
+
 import {
     Form,
     Select,
@@ -14,10 +17,15 @@ const Option = Select.Option
 添加plex的form组件
 */
 
-export default class AddFormPlex extends Component {
+export default class UpdateFormPlex extends Component {
 
     //antd v4 版本与 v3 对于 form的写法有变化
     formRef = React.createRef();
+
+
+    static propTypes = {
+        plexname: PropTypes.string.isRequired
+    }
 
     render()
     {

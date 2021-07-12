@@ -12,6 +12,11 @@ import LinkButton from '../../components/link-button';
 //引入请求登录函数 20200107
 import {reqPlexes} from '../../api/index'
 
+//引入add-form-plex
+import AddFormPlex from './add-form-plex'
+
+import UpdateFormPlex from './update-form-plex'
+
 
 export default class Zenv extends Component {
 
@@ -60,7 +65,7 @@ export default class Zenv extends Component {
           key: 'x',
           render: (plex) => (
             <span>
-              <LinkButton onClick={this.showUpdate}>修改Plex</LinkButton>
+              <LinkButton onClick={ () => this.showUpdate(plex)}>修改Plex</LinkButton>
               {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
               <LinkButton onClick={() => {this.showLpars(plex)}}>查看Lpar</LinkButton>
             </span>
@@ -128,7 +133,12 @@ export default class Zenv extends Component {
    /*
    显示修改的确认框
    */
-   showUpdate = () => {
+   showUpdate = (plex) => {
+
+    //保存plex对象
+    this.plex = plex
+    
+    //更新状态 
     this.setState({
       showStatus: 2
     })
@@ -169,6 +179,10 @@ export default class Zenv extends Component {
 
         // 读取状态数据
         const {plexes, loading, showStatus} = this.state
+
+        
+        // 读取指定的分类
+        const plex = this.plex
 
         //card 的左侧
         const title = 'Plex'
@@ -352,14 +366,16 @@ export default class Zenv extends Component {
                     visible={showStatus===1} 
                     onOk={this.addPlex} 
                     onCancel={this.handleCancel}>
-                    <p>添加界面</p>
+                    
+                    <AddFormPlex/>
                   </Modal>
 
                   <Modal title="修改 plex" 
                     visible={showStatus===2} 
                     onOk={this.updatePlex} 
                     onCancel={this.handleCancel}>
-                    <p>修改界面</p>
+                    {/* <p>修改界面</p> */}
+                    <UpdateFormPlex plex = {plex}/>
                   </Modal>
                 </Card>
             </div>
