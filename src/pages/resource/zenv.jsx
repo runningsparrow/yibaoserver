@@ -10,7 +10,7 @@ import {
 import LinkButton from '../../components/link-button';
 
 //引入请求登录函数 20200107
-import {reqPlexes} from '../../api/index'
+import {reqPlexes, reqUpdatePlex} from '../../api/index'
 
 //引入add-form-plex
 import AddFormPlex from './add-form-plex'
@@ -135,6 +135,9 @@ export default class Zenv extends Component {
    */
    showUpdate = (plex) => {
 
+
+    // console.log(plex)
+
     //保存plex对象
     this.plex = plex
     
@@ -155,8 +158,38 @@ export default class Zenv extends Component {
     /*
     更新plex
     */
-    updatePlex = () => {
+    updatePlex = async () => {
       console.log('updatePlex')
+
+      // 1 隐藏确定框 
+
+      this.setState({
+        showStatus: 0
+      })
+
+      //准备数据  this.form ??
+      const plexname = this.form.current.getFieldsValue().plexname
+      const use = this.form.current.getFieldsValue().plexuse
+      const total = this.form.current.getFieldsValue().plextotal
+      const used = this.form.current.getFieldsValue().plexused
+      const free = this.form.current.getFieldsValue().plexfree
+
+      const plex = {}
+      plex.plexname = plexname
+      plex.use = use
+      plex.total = total
+      plex.used = used
+      plex.free = free
+      
+
+      // 2 发请求更新分类
+      console.log(plex)
+      const result = await reqUpdatePlex(plex)
+      if (result.status === 0){
+        // 3 重新显示列表
+        this.getPlexes()
+      }
+    
     }
 
 
@@ -363,6 +396,7 @@ export default class Zenv extends Component {
                   pagination={{defaultPageSize: 5, showQuickJumper: true}}
                    />
                    <Modal title="添加 plex" 
+                    destroyOnClose = 'true'  //关闭时候销毁以便打开时重新载入数据 如果 modal 包含 form 需要在 form设定  preserve = {false}
                     visible={showStatus===1} 
                     onOk={this.addPlex} 
                     onCancel={this.handleCancel}>
@@ -371,11 +405,12 @@ export default class Zenv extends Component {
                   </Modal>
 
                   <Modal title="修改 plex" 
+                    destroyOnClose = 'true'  //关闭时候销毁以便打开时重新载入数据 如果 modal 包含 form 需要在 form设定  preserve = {false}
                     visible={showStatus===2} 
                     onOk={this.updatePlex} 
                     onCancel={this.handleCancel}>
                     {/* <p>修改界面</p> */}
-                    <UpdateFormPlex plex = {plex}/>
+                    <UpdateFormPlex plex = {plex} setForm={(form)=>{this.form=form}}/>
                   </Modal>
                 </Card>
             </div>

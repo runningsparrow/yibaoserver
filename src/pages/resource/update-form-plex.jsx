@@ -24,32 +24,63 @@ export default class UpdateFormPlex extends Component {
 
 
     static propTypes = {
-        plexname: PropTypes.string.isRequired
+        // plexname: PropTypes.string.isRequired,
+        // use: PropTypes.string.isRequired,
+        // total: PropTypes.number.isRequired,
+        // used: PropTypes.number.isRequired,
+        // free: PropTypes.number.isRequired
+        setForm: PropTypes.func.isRequired
+        
     }
+
+
+    componentWillMount () {
+        // 将form对象通过setForm()传递父组件
+        this.props.setForm(this.formRef)
+      }
+    
+
+
 
     render()
     {
+
+        //通过this.props获取传参
+        const { plex } = this.props;
+        
+
+
+
         return(
-            <Form ref={this.formRef}
-            name="addplex"
-            className="addpelx-form"
+            <Form ref={this.formRef} 
+            preserve = {false}  //配合 modal 的 destroy使用
+            name="updateplex"
+            className="updateplex-form"
             initialValues={{ "use": '1' }}
             labelCol={{ style: { width: '100%', height: '30px' } }} //label样式
             labelAlign="left" //label样式
             >
                 <Item
+                
                  label="选择所属应用" 
-                 name="plexuse">
+                 name="plexuse"
+                
+                 //设定初始值
+                 initialValue={plex.use}
+                 >
                     <Select>
-                        <Option value='1'>测试环境T1</Option>
-                        <Option value='2'>海外SIT1</Option>
-                        <Option value='3'>海外SIT2</Option>
+                        <Option value='测试环境T1'>测试环境T1</Option>
+                        <Option value='海外SIT1'>海外SIT1</Option>
+                        <Option value='海外SIT2'>海外SIT2</Option>
                     </Select>
+
                 </Item>
 
                 <Item
                  label="Plex 名称"
                  name="plexname"
+                 //设定初始值
+                 initialValue={plex.plexname}
                 >
                     <Input placeholder="请输入Plex名称"></Input>
                 </Item>
@@ -57,6 +88,8 @@ export default class UpdateFormPlex extends Component {
                 <Item
                  label="总容量"
                  name="plextotal"
+                 //设定初始值
+                 initialValue={plex.total}
                 >
                     <Input placeholder="请输入总容量"></Input>
                 </Item>
@@ -64,6 +97,8 @@ export default class UpdateFormPlex extends Component {
                 <Item
                  label="已使用"
                  name="plexused"
+                 //设定初始值
+                 initialValue={plex.used}
                 >
                     <Input placeholder="请输入已使用"></Input>
                 </Item>
@@ -71,6 +106,8 @@ export default class UpdateFormPlex extends Component {
                 <Item
                  label="剩余容量"
                  name="plexfree"
+                 //设定初始值
+                 initialValue={plex.free}
                 >
                     <Input placeholder="请输入剩余容量"></Input>
                 </Item>

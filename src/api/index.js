@@ -39,7 +39,12 @@ export const reqAddUser = (user) => ajax(BASE + '/manage/user/add', user, 'POST'
 //获取 环境 plex 列表
 export const reqPlexes = () => ajax(BASE + '/manage/plex/list', 'GET')
 
+//更新环境
+export const reqUpdatePlex = (plex) => ajax(BASE + '/manage/plex/update', plex, 'POST')
 
+
+//增加环境
+export const reqAddPlex = (plex) => ajax(BASE + '/manage/plex/add', plex, 'POST')
 
 //获取 环境 lpar 列表
 export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
