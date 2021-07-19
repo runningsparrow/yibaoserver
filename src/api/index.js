@@ -50,6 +50,9 @@ export const reqAddPlex = (plex) => ajax(BASE + '/manage/plex/add', plex, 'POST'
 export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
 
 
+//获取 环境 env 列表
+export const reqEnvs = () => ajax(BASE + '/manage/env/list', 'GET') 
+
 /*
 jsonp
 json请求的接口请求函数

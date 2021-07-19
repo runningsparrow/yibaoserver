@@ -12,6 +12,10 @@ import LinkButton from '../../components/link-button';
 //引入请求登录函数 20200107
 import {reqPlexes, reqUpdatePlex} from '../../api/index'
 
+
+//20210719
+import {reqEnvs} from '../../api/index'
+
 //引入add-form-plex
 import AddFormPlex from './add-form-plex'
 
@@ -26,6 +30,7 @@ export default class Zenv extends Component {
       plexes:[], //环境列表
       chosedplex:'',
       showStatus: 0, //标识添加/更新的确认框是否显示, 0:都不显示, 1: 显示添加, 2: 显示更新
+      envs:[], //列表
     }
 
     /*
@@ -72,6 +77,31 @@ export default class Zenv extends Component {
           ),
         },
       ]
+    }
+
+
+
+    /*
+     异步获取env数组 
+     */
+     getEnvs = async () => {
+
+       
+        
+        // 发异步ajax请求, 获取数据
+        const result = await reqEnvs()
+
+        console.log(result)
+
+        if(result.status===0) {
+          //取出数组
+          const envs = result.data
+
+          this.setState({
+            envs
+          })
+        
+        }
     }
 
     /*
@@ -161,6 +191,12 @@ export default class Zenv extends Component {
     updatePlex = async () => {
       console.log('updatePlex')
 
+
+      //20210719 进行更新前的表单验证
+
+
+
+
       // 1 隐藏确定框 
 
       this.setState({
@@ -198,6 +234,8 @@ export default class Zenv extends Component {
     */
     componentWillMount () {
       this.initColumns()
+      //获取env列表
+      this.getEnvs()
     }
 
     /*
@@ -206,12 +244,13 @@ export default class Zenv extends Component {
     componentDidMount () {
       // 获取一级分类列表显示
       this.getPlexes()
+      
     }
 
     render() {
 
         // 读取状态数据
-        const {plexes, loading, showStatus} = this.state
+        const {plexes, loading, showStatus, envs} = this.state
 
         
         // 读取指定的分类
@@ -400,8 +439,8 @@ export default class Zenv extends Component {
                     visible={showStatus===1} 
                     onOk={this.addPlex} 
                     onCancel={this.handleCancel}>
-                    
-                    <AddFormPlex/>
+                     
+                    <AddFormPlex envs = {envs}/>   {/* //传参给子组件 */}
                   </Modal>
 
                   <Modal title="修改 plex" 
@@ -410,7 +449,7 @@ export default class Zenv extends Component {
                     onOk={this.updatePlex} 
                     onCancel={this.handleCancel}>
                     {/* <p>修改界面</p> */}
-                    <UpdateFormPlex plex = {plex} setForm={(form)=>{this.form=form}}/>
+                    <UpdateFormPlex plex = {plex} envs = {envs} setForm={(form)=>{this.form=form}}/>  
                   </Modal>
                 </Card>
             </div>

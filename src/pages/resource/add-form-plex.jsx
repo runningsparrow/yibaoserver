@@ -5,7 +5,8 @@ import {
     Input
 } from 'antd'
 
-
+// //20210719
+// import {reqEnvs} from '../../api/index'
 
 const Item = Form.Item
 const Option = Select.Option
@@ -16,11 +17,19 @@ const Option = Select.Option
 
 export default class AddFormPlex extends Component {
 
+
+
     //antd v4 版本与 v3 对于 form的写法有变化
     formRef = React.createRef();
 
+
+
     render()
     {
+        //通过this.props获取传参envs
+        const { envs } = this.props;
+        console.log({ envs })
+
         return(
             <Form ref={this.formRef}
             name="addplex"
@@ -33,9 +42,10 @@ export default class AddFormPlex extends Component {
                  label="选择所属应用" 
                  name="plexuse">
                     <Select>
-                        <Option value='1'>测试环境T1</Option>
-                        <Option value='2'>海外SIT1</Option>
-                        <Option value='3'>海外SIT2</Option>
+                        {    
+                            //解析数组
+                            envs.map((e,index) => <Option key={index} value={e._id}>{e.envname}</Option>)  
+                        }
                     </Select>
                 </Item>
 

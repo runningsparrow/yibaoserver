@@ -47,6 +47,8 @@ export default class UpdateFormPlex extends Component {
 
         //通过this.props获取传参
         const { plex } = this.props;
+
+        const { envs } = this.props;
         
 
 
@@ -69,9 +71,10 @@ export default class UpdateFormPlex extends Component {
                  initialValue={plex.use}
                  >
                     <Select>
-                        <Option value='测试环境T1'>测试环境T1</Option>
-                        <Option value='海外SIT1'>海外SIT1</Option>
-                        <Option value='海外SIT2'>海外SIT2</Option>
+                        {    
+                            //解析数组
+                            envs.map((e,index) => <Option key={index} value={e._id}>{e.envname}</Option>)  
+                        }
                     </Select>
 
                 </Item>
