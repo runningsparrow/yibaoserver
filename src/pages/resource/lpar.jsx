@@ -128,6 +128,7 @@ export default class Channel extends Component {
               <span>
                 {/* 如何向事件回调函数传递参数: 先定义一个匿名函数，在该函数中调用处理的函数并传入数据 */}
                 <LinkButton onClick={() => {this.reviselpar(lpar)}}>修改Lpar</LinkButton>
+                <LinkButton onClick={() => {this.deletelpar(lpar)}}>删除Lpar</LinkButton>
               </span>
             ),
           },
@@ -141,6 +142,13 @@ export default class Channel extends Component {
       console.log(lpar)
 
     }  
+
+
+    deletelpar = (lpar) => {
+
+      console.log(lpar)
+
+    }
 
     /*
      异步获取zenv数组 

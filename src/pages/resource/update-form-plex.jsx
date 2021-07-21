@@ -20,7 +20,7 @@ const Option = Select.Option
 export default class UpdateFormPlex extends Component {
 
     //antd v4 版本与 v3 对于 form的写法有变化
-    formRef = React.createRef();
+    formRef_addplex = React.createRef();
 
 
     static propTypes = {
@@ -36,7 +36,7 @@ export default class UpdateFormPlex extends Component {
 
     componentWillMount () {
         // 将form对象通过setForm()传递父组件
-        this.props.setForm(this.formRef)
+        this.props.setForm(this.formRef_addplex)
       }
     
 
@@ -54,7 +54,7 @@ export default class UpdateFormPlex extends Component {
 
 
         return(
-            <Form ref={this.formRef} 
+            <Form ref={this.formRef_addplex} 
             preserve = {false}  //配合 modal 的 destroy使用
             name="updateplex"
             className="updateplex-form"
@@ -73,7 +73,7 @@ export default class UpdateFormPlex extends Component {
                     <Select>
                         {    
                             //解析数组
-                            envs.map((e,index) => <Option key={index} value={e._id}>{e.envname}</Option>)  
+                            envs.map((e,index) => <Option key={index} value={e.envname}>{e.envname}</Option>)  
                         }
                     </Select>
 
