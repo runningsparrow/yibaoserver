@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-export default class Channel extends Component {
+export default class LparUpdate extends Component {
     render() {
         return(
-            <div>管道</div>
+            <div>修改lpar</div>
         )
 
         

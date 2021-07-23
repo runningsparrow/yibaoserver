@@ -47,7 +47,7 @@ const menuList = [
       },
       {
         title: '逻辑分区',
-        key: '/resource/lpar',
+        key: '/resource/lparrouter',
         icon: <ContainerOutlined />
       },
     ]
@@ -92,11 +92,29 @@ const menuList = [
         icon: <ContainerOutlined />,
       },
       {
-        title: 'iodf',
+        title: 'iodf日志',
         key: '/resourcelog/iodflog',
         icon: <ContainerOutlined />,
       },
     ]
+  },
+  {
+    title: '操作处理',
+    key: '/operation',
+    icon: <ContainerOutlined />,
+    children: [
+      {
+        title: 'iodf生效',
+        key: '/operation/opiodf',
+        icon: <ContainerOutlined />,
+      },
+      {
+        title: '权重',
+        key: '/operation/weight',
+        icon: <ContainerOutlined />,
+      },
+    ]
+
   },
 ]
 

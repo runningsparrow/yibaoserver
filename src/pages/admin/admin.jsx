@@ -16,11 +16,17 @@ import Channel from '../resource/channel'
 import Controlunit from '../resource/controlunit'
 import Diskcab from '../resource/diskcab'  
 import Zenv from '../resource/zenv'  
-import Lpar from '../resource/lpar'
+// import Lpar from '../resource/lpar'
+import LparRouter from '../resource/lparrouter'
+
 import Diskaddr from '../storage/diskaddr'
 import Disktype from '../storage/disktype'
 import Disklog from '../resourcelog/disklog'
 import Iodflog from '../resourcelog/iodflog'
+
+//20210723
+import OpIodf from '../operation/opiodf'
+import Weight from '../operation/weight'
 
 //获取Layout 组件
 const { Footer, Sider, Content } = Layout;
@@ -58,11 +64,13 @@ export default class Admin extends Component {
                                 <Route path='/resource/diskcab' component={Diskcab}></Route>
                                 <Route path='/resource/controlunit' component={Controlunit}></Route>
                                 <Route path='/resource/channel' component={Channel}></Route>
-                                <Route path='/resource/lpar' component={Lpar}></Route>
+                                <Route path='/resource/lparrouter' component={LparRouter}></Route>
                                 <Route path='/storage/diskaddr' component={Diskaddr}></Route>
                                 <Route path='/storage/disktype' component={Disktype}></Route>
                                 <Route path='/resourcelog/disklog' component={Disklog}></Route>
                                 <Route path='/resourcelog/iodflog' component={Iodflog}></Route>
+                                <Route path='/operation/opiodf' component={OpIodf}></Route>
+                                <Route path='/operation/weight' component={Weight}></Route>
                                 <Redirect to = '/home'/>
                             </Switch>
                         </Content>
