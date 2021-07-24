@@ -104,6 +104,11 @@ export default class Login extends Component {
             const user = result.data
             memoryUtils.user = user //保存在内存中
             storageUtils.saveUser(user) // 保存到local中
+
+            //保存token
+            const token = result.Token
+            storageUtils.saveToken(token)
+            
             
             
             //跳转页面(使用push，可以回退)

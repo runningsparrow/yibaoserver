@@ -3,6 +3,7 @@
  */
 import store from 'store'
 const USER_KEY = 'user_key'
+const TOKEN_KEY = 'token_key'
 export default {
   /*
   保存user
@@ -26,5 +27,24 @@ export default {
   removeUser () {
     // localStorage.removeItem(USER_KEY)
     store.remove(USER_KEY)
+  },
+
+  //保存token
+  saveToken(Token) {
+
+    store.set(TOKEN_KEY, Token)
+
+  },
+
+
+  getToken() {
+    return store.get(TOKEN_KEY)
+  },
+
+  removeToken() {
+
+    store.remove(TOKEN_KEY)
+
   }
+
 }
