@@ -13,9 +13,18 @@
 //20210107引入message
  import {message} from 'antd'
 
- export default function ajax(url, data={}, type='GET') {
+ import storageUtils from '../utils/storageUtils'
+
+ export default function ajax(
+     url, 
+     data={}, 
+     type='GET') 
+{
     
     return new Promise((resolve, reject) => {
+        //20210725 获取token数据赋值给header
+        axios.defaults.headers["Authorization"] = "Bearer " + storageUtils.getToken()
+
         let promise
         // 1. 执行异步ajax请求
         if(type==='GET') { // 发GET请求

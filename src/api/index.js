@@ -18,9 +18,11 @@ import axios from 'axios'
 //引入message
 import {message} from 'antd'
 
+
 // const BASE = 'http://localhost:5000'
 // 在 package.json 配置代理服务器
 const BASE = ''
+
 
 //登录
 /*
@@ -60,6 +62,8 @@ export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
 
 //获取 环境 env 列表
 export const reqEnvs = () => ajax(BASE + '/manage/env/list', 'GET') 
+
+
 
 /*
 jsonp

@@ -79,6 +79,10 @@ class Header extends Component {
             // 删除保存的user数据
             storageUtils.removeUser()
             memoryUtils.user = {}
+            
+            //删除token
+            //20210725
+            storageUtils.removeToken()
 
             // 跳转到login
             this.props.history.replace('/login')
