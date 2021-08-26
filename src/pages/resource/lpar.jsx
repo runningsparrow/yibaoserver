@@ -1,17 +1,27 @@
 import React, {Component} from 'react'
-import { Card,Button,Icon,Table } from 'antd';
+import { Card,Button,Icon,Table,
+  Select,
+  Input,
+  message
+ } from 'antd';
 
 import LinkButton from '../../components/link-button';
 
 import {reqLpars} from '../../api/index'
 
+//select 的 Option
+const Option = Select.Option
 
 export default class Lpar extends Component {
 
     state = {
         loading: false, // 是否正在获取数据中
         lpars:[], //环境列表
-        chosedlpar:''
+        chosedlpar:'',
+        total:0, //lpar 总数
+        //搜索
+        searchName: '', // 搜索的关键字
+        searchType: 'lpar_name', // 根据哪个字段搜索
     }
 
     /*
@@ -188,7 +198,7 @@ export default class Lpar extends Component {
     执行异步任务: 发异步ajax请求
     */
     componentDidMount () {
-      // 获取一级分类列表显示
+      // 获取lpar数据
       this.getLpars()
     }
 
@@ -196,10 +206,30 @@ export default class Lpar extends Component {
     render() {
 
         // 读取状态数据
-        const {lpars, loading} = this.state
+        const {lpars, loading,searchType, searchName,total} = this.state
 
         //card 的左侧
-        const title = 'Lpar'
+        // const title = 'Lpar'
+        //20210826 增加搜索
+        const title = (
+          <span>
+            <Select
+              value= {searchType}
+              style={{width: 150}}
+              onChange={value => this.setState({searchType:value})}
+            >
+              <Option value='lpar_name'>按lpar搜索</Option>
+              <Option value='lpar_sysplex'>按plex搜索</Option>
+            </Select>
+            <Input
+              placeholder='关键字'
+              style={{width: 150, margin: '0 15px'}}
+              value={searchName}
+              onChange={event => this.setState({searchName:event.target.value})}
+            />
+            <Button type='primary' onClick={() => this.getLpars(1)}>搜索</Button>
+          </span>
+        )
 
         //card 的右侧
         const extra = (
