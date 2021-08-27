@@ -60,6 +60,10 @@ export const reqPlexLpars = (plexname) => ajax(BASE + '/manage/plex/lpar', plexn
 export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
 
 
+// 获取lpar分页列表
+export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/list', {pageNum, pageSize})
+
+
 //获取 环境 env 列表
 export const reqEnvs = () => ajax(BASE + '/manage/env/list', 'GET') 
 

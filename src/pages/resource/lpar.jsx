@@ -8,6 +8,7 @@ import { Card,Button,Icon,Table,
 import LinkButton from '../../components/link-button';
 
 import {reqLpars} from '../../api/index'
+import {reqLparspage} from '../../api/index'
 
 //select 的 Option
 const Option = Select.Option
