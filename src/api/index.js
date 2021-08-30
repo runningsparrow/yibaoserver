@@ -61,7 +61,7 @@ export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
 
 
 // 获取lpar分页列表
-export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/list', {pageNum, pageSize})
+export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/pagelist', {pageNum, pageSize})
 
 
 //获取 环境 env 列表

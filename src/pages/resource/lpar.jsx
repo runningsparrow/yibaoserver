@@ -162,7 +162,7 @@ export default class Lpar extends Component {
     }
 
     /*
-     异步获取zenv数组 
+     异步获取lpar数组 
      */
      getLpars = async () => {
 
