@@ -8,7 +8,8 @@ import { Card,Button,Icon,Table,
 import LinkButton from '../../components/link-button';
 
 import {reqLpars} from '../../api/index'
-import {reqLparspage} from '../../api/index'
+import {reqLparspage,reqSearchLpars} from '../../api/index'
+import {PAGE_SIZE} from '../../utils/constants'
 
 //select 的 Option
 const Option = Select.Option
@@ -164,7 +165,7 @@ export default class Lpar extends Component {
     /*
      异步获取lpar数组 
      */
-     getLpars = async () => {
+    getLpars = async () => {
 
         // 在发请求前, 显示loading
         this.setState({loading: true})
@@ -187,6 +188,35 @@ export default class Lpar extends Component {
         }
     }
 
+    /*
+      获取分页lpar数组
+     */
+    getLparsbypage = async(pageNum) => {
+
+      this.pageNum = pageNum // 保存pageNum, 让其它方法可以看到
+      this.setState({loading: true}) // 显示loading
+
+      const {searchName, searchType} = this.state
+      // 如果搜索关键字有值, 说明我们要做搜索分页
+      let result
+      if (searchName) {
+        result = await reqSearchLpars({pageNum, pageSize: PAGE_SIZE, searchName, searchType})
+      } else { // 一般分页请求
+        result = await reqLparspage(pageNum, PAGE_SIZE)
+      }
+  
+      this.setState({loading: false}) // 隐藏loading
+      if (result.status === 0) {
+        // 取出分页数据, 更新状态, 显示分页列表
+        const {total, list} = result.data
+        this.setState({
+          total,
+          lpars: list
+        })
+      }
+
+    }
+
      /*
     为第一次render()准备数据
     */
@@ -200,7 +230,9 @@ export default class Lpar extends Component {
     */
     componentDidMount () {
       // 获取lpar数据
-      this.getLpars()
+      // this.getLpars()
+      // 第一次取第一页
+      this.getLparsbypage(1)
     }
 
 
@@ -228,7 +260,7 @@ export default class Lpar extends Component {
               value={searchName}
               onChange={event => this.setState({searchName:event.target.value})}
             />
-            <Button type='primary' onClick={() => this.getLpars(1)}>搜索</Button>
+            <Button type='primary' onClick={() => this.getLparsbypage(1)}>搜索</Button>
           </span>
         )
 
@@ -251,7 +283,14 @@ export default class Lpar extends Component {
               dataSource={lpars}
               //  columns={columns} 
               columns={this.columns} 
-              pagination={{defaultPageSize: 5, showQuickJumper: true}}
+              // pagination={{defaultPageSize: 5, showQuickJumper: true}}
+              pagination={{
+                current: this.pageNum,
+                total,
+                defaultPageSize: PAGE_SIZE,
+                showQuickJumper: true,
+                onChange: this.getLparsbypage
+              }}
               // 加上这条 横向滚动 支持此属性的浏览器内容就不会换行了
               scroll={{ x: 'max-content' }}
               />

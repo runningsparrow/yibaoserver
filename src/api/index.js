@@ -61,7 +61,19 @@ export const reqLpars = () => ajax(BASE + '/manage/lpar/list', 'GET')
 
 
 // 获取lpar分页列表
-export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/pagelist', {pageNum, pageSize})
+export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/pagelist', {pageNum, pageSize}, 'POST')
+
+
+/*
+搜索商品分页列表 (根据商品名称/商品描述)
+searchType: 搜索的类型, productName/productDesc
+ */
+export const reqSearchLpars = ({pageNum, pageSize, searchName, searchType}) => ajax(BASE + '/manage/lpar/search', {
+  pageNum,
+  pageSize,
+  [searchType]: searchName,
+},'POST')
+
 
 
 //获取 环境 env 列表
