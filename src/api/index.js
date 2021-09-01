@@ -66,8 +66,9 @@ export const reqLparspage = (pageNum, pageSize) => ajax(BASE + '/manage/lpar/pag
 
 /*
 搜索商品分页列表 (根据商品名称/商品描述)
-searchType: 搜索的类型, productName/productDesc
+searchType: 搜索的类型, lpar_name/lpar_sysplex
  */
+//让变量 searchType 作为属性名，需要在外面加中括号
 export const reqSearchLpars = ({pageNum, pageSize, searchName, searchType}) => ajax(BASE + '/manage/lpar/search', {
   pageNum,
   pageSize,
