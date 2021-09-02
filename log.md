@@ -287,4 +287,7 @@ P63
 P64
 64_尚硅谷_ProductDetial组件_动态显示商品信息
 
+传递信息使用 
+this.props.location.state
+
 ================================
