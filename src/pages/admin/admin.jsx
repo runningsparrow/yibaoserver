@@ -20,7 +20,8 @@ import Zenv from '../resource/zenv'
 import LparRouter from '../resource/lparrouter'
 
 import Diskaddr from '../storage/diskaddr'
-import Disktype from '../storage/disktype'
+// import Disktype from '../storage/disktype'
+import DisktypeRouter from '../storage/disktyperouter';
 import Disklog from '../resourcelog/disklog'
 import Iodflog from '../resourcelog/iodflog'
 
@@ -66,7 +67,7 @@ export default class Admin extends Component {
                                 <Route path='/resource/channel' component={Channel}></Route>
                                 <Route path='/resource/lparrouter' component={LparRouter}></Route>
                                 <Route path='/storage/diskaddr' component={Diskaddr}></Route>
-                                <Route path='/storage/disktype' component={Disktype}></Route>
+                                <Route path='/storage/disktyperouter' component={DisktypeRouter}></Route>
                                 <Route path='/resourcelog/disklog' component={Disklog}></Route>
                                 <Route path='/resourcelog/iodflog' component={Iodflog}></Route>
                                 <Route path='/operation/opiodf' component={OpIodf}></Route>

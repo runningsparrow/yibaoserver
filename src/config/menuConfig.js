@@ -71,7 +71,7 @@ const menuList = [
     children: [
       {
         title: '类型',
-        key: '/storage/disktype',
+        key: '/storage/disktyperouter',
         icon: <ContainerOutlined />,
       },
       {
