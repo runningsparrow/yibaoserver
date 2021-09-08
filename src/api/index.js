@@ -21,7 +21,7 @@ import {message} from 'antd'
 
 // const BASE = 'http://localhost:5000'
 // 在 package.json 配置代理服务器
-const BASE = '138.128.215.73'
+const BASE = ''
 
 
 //登录
